@@ -1,0 +1,246 @@
+[
+  {
+    "id": 1,
+    "question": "Welcome! We're going to ask you some questions, so we can give you the right information for your situation. First, when was your vehicle accident?",
+    "options": [
+      { "text": "On or after May 1, 2021", "nextQuestionId": 5 },
+      { "text": "Before May 1, 2021", "nextQuestionId": null }
+    ]
+  },
+  
+  
+  {
+    "id": 2,
+    "question": "What is your issue about?",
+    "options": [
+      { "text": "I don't agree with ICBC's responsibility assessment", "nextQuestionId": null },
+      { "text": "I was injured in a vehicle accident and have an issue with accident benefits or compensation for my injuries", "nextQuestionId": null },
+      { "text": "I have vehicle or property damage from a vehicle accident", "nextQuestionId": 6 },
+      { "text": "I'm related to someone who died as a result of a vehicle accident and want to know about death benefits, funeral expenses, grief counselling, and caregiver benefits", "nextQuestionId": null} ,
+      { "text": "I helped at an accident scene and want to be reimbursed for expenses", "nextQuestionId": null },
+      { "text": "I have business or other losses from a vehicle accident", "nextQuestionId": null }
+    ]
+  },
+  {
+    "id": 3,
+    "question": "What is your issue about?",
+    "options": [
+      { "text": "I have a dispute about vehicle damage", "nextQuestionId": 4 },
+      { "text": "I have a dispute about damage to property other than a vehicle", "nextQuestionId": 7 },
+      { "text": "None of the above", "nextQuestionId": 8 }
+    ]
+  },
+    {
+      "id": 4,
+      "question": "What is the dispute about?",
+      "options": [
+        { "text": "The value of damage to a BC-insured vehicle, including the nature and extent of required repairs", "nextQuestionId": 9 },
+        { "text": "I disagree with ICBC's responsibility assessment for the accident", "nextQuestionId": 11 },
+        { "text": "None of the above", "nextQuestionId": 14 }
+      ]
+    },
+    {
+      "id": 5,
+      "pdfUrl": "/assets/doc/document.pdf",
+      "suggestion": "Please read this information sheet. It's relevant to your exploration.",
+      "nextQuestionId": 2
+    },
+    {
+      "id": 6,
+      "pdfUrl": "/assets/doc/document_2.pdf",
+      "suggestion": "Please read this information sheet. It's relevant to your exploration.",
+      "nextQuestionId": 3
+    },
+    {
+      "id": 7,
+      "pdfUrl": "/assets/doc/Damage_to_Property.pdf",
+      "suggestion": "Please read this information sheet. It's relevant to your exploration.",
+      "nextQuestionId": 8
+    },
+    {
+      "id": 8,
+      "question": "What would you like to do?",
+      "options": [
+        { "text": "Work it out with ICBC", "nextQuestionId": null },
+        { "text": "Get legal advice", "nextQuestionId": null },
+        { "text": "Ask the Civil Resolution Tribunal (CRT) to award compensation", "nextQuestionId": 24 }
+      ]
+    },
+    {
+      "id": 9,
+      "pdfUrl": "/assets/doc/document_3.pdf",
+      "suggestion": "Please read this information sheet. It's relevant to your exploration.",
+      "nextQuestionId": 10
+    },
+    {
+      "id": 10,
+      "type": "static-text",
+      "heading": "About Colors",
+      "smallHeading": "Red",
+      "content": "Red is the color of fire and blood. It is associated with energy, war, danger, strength, power, determination as well as passion, desire, and love.",
+      "nextQuestionId": null
+    },
+    {
+      "id": 11,
+      "pdfUrl": "/assets/doc/document_4.pdf",
+      "suggestion": "Please read this information sheet. It's relevant to your exploration.",
+      "nextQuestionId": 12
+    },
+    {
+      "id": 12,
+      "question": "What are you looking for?",
+      "options": [
+        { "text": "A CRT decision about responsibility for the accident plus reimbursement of a deductible, increase in premiums, or vehicle repair costs that you already paid because ICBC found you responsible", "nextQuestionId": 13 },
+        { "text": "Only a CRT decision about responsibility for the accident, without a claim for reimbursement", "nextQuestionId": 29 }
+      ]
+    },
+    {
+      "id": 13,
+      "question": "What is your claim about?",
+      "options": [
+        { "text": "Vehicle damage", "nextQuestionId": 14 },
+        { "text": "Deductibles, insurance premiums, or something else", "nextQuestionId": 8 }
+      ]
+    },{
+      "id": 14,
+      "question": "Do you have an agreement with ICBC about the value of the vehicle damage?",
+      "options": [
+        { "text": "Yes, I have a written agreement with ICBC", "nextQuestionId": 15 },
+        { "text": "Yes, an arbitrator has determined the value", "nextQuestionId": 15 },
+        { "text": "No, I don't have a written agreement with ICBC and an arbitrator hasn't determined the value", "nextQuestionId": 19 }
+      ]
+    },
+    {
+      "id": 15,
+      "question": "What would you like to do?",
+      "options": [
+        { "text": "Get legal advice", "nextQuestionId": 16 },
+        { "text": "Make a Civil Resolution Tribunal (CRT) claim for the value of the vehicle damage", "nextQuestionId": 17 }
+      ]
+    },
+    {
+      "id": 16,
+      "type": "static-text",
+      "heading": "What you can do",
+      "smallHeading": "Vehicle accidents after May 1, 2021 - get legal advice",
+      "content": "You may want to get legal advice to understand what you're entitled to and who to make a claim against.Here are some resources that might help:Access ProBonoClicklaw HelpMap is an online tool that can help you find free or low-cost legal advice.You've reached the end of your exploration for this issue.We hope our information and tools help you resolve your dispute. You can start a new exploration any time if you need to take further steps. Or you can click Back now to see what your other resolution options are for this issue.",
+      "nextQuestionId": null
+    },
+    {
+      "id": 17,
+      "pdfUrl": "/assets/doc/document_5.pdf",
+      "suggestion": "Please read this information sheet. It's relevant to your exploration.",
+      "nextQuestionId": 30
+    },
+    {
+      "id": 18,
+      "type": "static-text",
+      "heading": "We're adding this issue to your summary report",
+      "smallHeading": "Vehicle accidents on or after May 1, 2021 - damages",
+      "content": "You've reached the end of your exploration for this issue.Click Next to view your summary report, or go to the next issue in your exploration. The summary report gives you a summary of your exploration, all the resources we showed you, and your next steps.",
+      "nextQuestionId": null
+    },
+    {
+      "id": 19,
+      "question": "What would you like to do?",
+      "options": [
+        { "text": "Ask ICBC to determine the value of the vehicle damage", "nextQuestionId": 20 },
+        { "text": "Go to arbitration with ICBC", "nextQuestionId": 21 },
+        { "text": "Get legal advice", "nextQuestionId": 22 }
+      ]
+    },
+    {
+      "id": 20,
+      "question": "What would you like to do?",
+      "options": [
+        { "text": "here the document should be generated", "nextQuestionId":null }
+      ]
+    },
+    {
+      "id": 21,
+      "type": "static-text",
+      "heading": "We're adding this issue to your summary report",
+      "smallHeading": "Vehicle accidents on or after May 1, 2021 - damages",
+      "content": "You've reached the end of your exploration for this issue.Click Next to view your summary report, or go to the next issue in your exploration. The summary report gives you a summary of your exploration, all the resources we showed you, and your next steps.",
+      "nextQuestionId": null
+    },
+    {
+      "id": 22,
+      "type": "static-text",
+      "heading": "We're adding this issue to your summary report",
+      "smallHeading": "Vehicle accidents on or after May 1, 2021 - damages",
+      "content": "You've reached the end of your exploration for this issue.Click Next to view your summary report, or go to the next issue in your exploration. The summary report gives you a summary of your exploration, all the resources we showed you, and your next steps.",
+      "nextQuestionId": null
+    },
+    {
+      "id": 23,
+      "pdfUrl": "/assets/doc/document_6.pdf",
+      "suggestion": "Please read this information sheet. It's relevant to your exploration.",
+      "nextQuestionId": null
+    },
+    {
+      "id": 24,
+      "pdfUrl": "/assets/doc/document_7.pdf",
+      "suggestion": "Please read this information sheet. It's relevant to your exploration.",
+      "nextQuestionId": 25
+    },
+    {
+      "id": 25,
+      "type": "static-text",
+      "heading": "We're adding this issue to your summary report",
+      "smallHeading": "Vehicle accidents on or after May 1, 2021 - damages",
+      "content": "You've reached the end of your exploration for this issue.Click Next to view your summary report, or go to the next issue in your exploration. The summary report gives you a summary of your exploration, all the resources we showed you, and your next steps.",
+      "nextQuestionId": null
+    },
+    
+    {
+      "id": 26,
+      "question": "Do you have a detailed responsibility assessment letter (CL722) from ICBC? If you make a CRT claim, you must give us a copy of that letter when you make your claim.",
+      "options": [
+        { "text": "Yes", "nextQuestionId": 27 },
+        { "text": "No", "nextQuestionId": 31 }
+      ]
+    },
+    {
+      "id": 27,
+      "question": "Is it dated within the last 90 days?",
+      "options": [
+        { "text": "Yes", "nextQuestionId": 28 },
+        { "text": "No", "nextQuestionId": 13 }
+      ]
+    },
+    {
+      "id": 28,
+      "pdfUrl": "/assets/doc/ICBC_Accident_Responsibility_Letters.pdf",
+      "suggestion": "Please read this information sheet. It's relevant to your exploration.",
+      "nextQuestionId": 15
+    },
+    
+    
+    {
+      "id": 29,
+      "pdfUrl": "/assets/doc/ICBC Accident_Responsibility_Letters.pdf",
+      "suggestion": "Please read this information sheet. It's relevant to your exploration.",
+      "nextQuestionId": 26
+    },
+    {
+      "id": 30,
+      "type": "static-text",
+      "heading": "We're adding this issue to your summary report",
+      "smallHeading": "Vehicle accidents on or after May 1, 2021 - damages",
+      "content": "You've reached the end of your exploration for this issue.Click Next to view your summary report, or go to the next issue in your exploration. The summary report gives you a summary of your exploration, all the resources we showed you, and your next steps.",
+      "nextQuestionId": null
+    },
+    {
+      "id": 31,
+      "question": "What would you like to do?",
+      "options": [
+        { "text": "Ask ICBC for the detailed responsibility assessment letter (CL722), if your short Notice of Responsibility letter (CL281) is dated within the last 90 days", "nextQuestionId": 20 },
+        { "text": "Get legal advice", "nextQuestionId": 22 },
+        { "text": "Explore my other options", "nextQuestionId": 12 }
+      ]
+    }
+    
+
+  ]
+  
