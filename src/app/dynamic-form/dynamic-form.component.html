@@ -1,0 +1,9 @@
+<form [formGroup]="form" (ngSubmit)="submit()">
+    <formly-form [form]="form" [fields]="fields" [model]="model">
+    </formly-form>
+    <div  *ngIf="jsonFilename !== ''" >
+    <button mat-raised-button color="primary" type="submit" *ngIf="!isStaticTextType() && !isPdfType()">Next</button>
+    <button type="button" mat-button (click)="goBack()" [disabled]="!canGoBack()">Back</button>
+    </div>
+  </form>
+  
