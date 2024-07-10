@@ -4,8 +4,16 @@
     "question": "Welcome! We're going to ask you some questions, so we can give you the right information for your situation. First, when was your vehicle accident?",
     "options": [
       { "text": "On or after May 1, 2021", "nextQuestionId": 5 },
-      { "text": "Before May 1, 2021", "nextQuestionId": null }
+      { "text": "Before May 1, 2021", "nextQuestionId": 32 }
     ]
+  },
+  {
+    "id": 32,
+    "type": "static",
+    "heading": "About Colors",
+    "smallHeading": "Red",
+    "content": "Red is the color of fire and blood. It is associated with energy, war, danger, strength, power, determination as well as passion, desire, and love.",
+    "nextQuestionId": null
   },
   
   
@@ -74,7 +82,7 @@
     },
     {
       "id": 10,
-      "type": "static-text",
+      "type": "static",
       "heading": "About Colors",
       "smallHeading": "Red",
       "content": "Red is the color of fire and blood. It is associated with energy, war, danger, strength, power, determination as well as passion, desire, and love.",
@@ -120,7 +128,7 @@
     },
     {
       "id": 16,
-      "type": "static-text",
+      "type": "static",
       "heading": "What you can do",
       "smallHeading": "Vehicle accidents after May 1, 2021 - get legal advice",
       "content": "You may want to get legal advice to understand what you're entitled to and who to make a claim against.Here are some resources that might help:Access ProBonoClicklaw HelpMap is an online tool that can help you find free or low-cost legal advice.You've reached the end of your exploration for this issue.We hope our information and tools help you resolve your dispute. You can start a new exploration any time if you need to take further steps. Or you can click Back now to see what your other resolution options are for this issue.",
@@ -134,7 +142,7 @@
     },
     {
       "id": 18,
-      "type": "static-text",
+      "type": "static",
       "heading": "We're adding this issue to your summary report",
       "smallHeading": "Vehicle accidents on or after May 1, 2021 - damages",
       "content": "You've reached the end of your exploration for this issue.Click Next to view your summary report, or go to the next issue in your exploration. The summary report gives you a summary of your exploration, all the resources we showed you, and your next steps.",

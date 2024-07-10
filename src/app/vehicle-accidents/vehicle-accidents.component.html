@@ -1,7 +1,4 @@
-<form [formGroup]="form" (ngSubmit)="submit()">
-    <formly-form [form]="form" [fields]="fields" [model]="model">
-    </formly-form>
-    <button mat-raised-button color="primary" type="submit" *ngIf="!isPdfType()" >Next</button>
-    <button type="button" mat-button (click)="goBack()" [disabled]="!canGoBack()">Back</button>
-  </form>
-  
+   <button mat-raised-button color="primary" *ngIf="showButtons" (click)="loadJson('questions.json')">Load Questions 1</button>
+   <button mat-raised-button color="primary" *ngIf="showButtons" (click)="loadJson('questions2.json')">Load Questions 2</button>
+
+<app-dynamic-form [jsonFilename]="selectedJson"></app-dynamic-form>
