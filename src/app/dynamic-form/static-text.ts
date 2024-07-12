@@ -8,7 +8,7 @@ import { FieldType } from '@ngx-formly/core';
       <h3 [innerHTML]="to.heading"></h3>
       <h4 [innerHTML]="to.subheading"></h4>
       <p [innerHTML]="to.content"></p>
-      <button mat-raised-button color="primary" (click)="to.onNext()">Next</button>
+    
     </div>
   `,
 })

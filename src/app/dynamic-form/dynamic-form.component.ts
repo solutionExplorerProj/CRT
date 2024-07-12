@@ -2,6 +2,9 @@ import { Component, Input, SimpleChanges } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FormlyFieldConfig } from '@ngx-formly/core';
 import { QuestionService } from './question-service';
+import { Question } from '../question-module';
+
+import { UserService } from '../user-service';
 
 
 interface FormModel {
@@ -13,32 +16,31 @@ interface FormModel {
   styleUrls: ['./dynamic-form.component.scss']
 })
 export class DynamicFormComponent {
-  @Input() jsonFilename: string = '';
-
   form = new FormGroup({});
   model: FormModel = { answer: '' };
   fields: FormlyFieldConfig[] = [];
-  questions: any[] = [];
   currentQuestion: any;
   userResponses: any[] = [];
   previousQuestions: any[] = [];
   answerMap: { [key: string]: string } = {};
 
-  constructor(private questionService: QuestionService) { }
+  constructor(private questionService: UserService) {}
 
-  ngOnChanges(changes: SimpleChanges): void {
-    if (changes.jsonFilename && changes.jsonFilename.currentValue) {
-      this.loadQuestions(changes.jsonFilename.currentValue);
-    }
+  ngOnInit(): void {
+    // Load the initial question with ID 1
+    this.loadQuestions(1);
   }
 
-  loadQuestions(filename: string): void {
-    this.questionService.getQuestions(filename).subscribe(data => {
-      this.questions = data;
-      if (this.questions.length > 0) {
-        this.loadQuestion(this.questions[0]);
+  loadQuestions(questionId: number): void {
+    this.questionService.getQuestionById(questionId).subscribe(
+      data => {
+        this.currentQuestion = data;
+        this.loadQuestion(this.currentQuestion);
+      },
+      error => {
+        console.error('Error loading question:', error);
       }
-    });
+    );
   }
 
   loadQuestion(question: any): void {
@@ -46,111 +48,91 @@ export class DynamicFormComponent {
       console.error('Question is undefined');
       return;
     }
-
+    
     this.currentQuestion = question;
-
-    if (question.pdfUrl) {
-      this.fields = [
-        {
-          key: 'pdf',
-          type: 'pdf',
-          templateOptions: {
-            heading: 'Suggested Resource',
-            suggestion: question.suggestion,
-            pdfUrl: question.pdfUrl,
-            onNext: () => this.next(),
-          },
+    this.fields = this.createFieldConfig(question);
+  }
+  createFieldConfig(question: any): FormlyFieldConfig[] {
+    if (question.type === 'pdf') {
+      return [{
+        key: 'pdf',
+        type: 'pdf',
+        templateOptions: {
+          heading: question.heading,
+          suggestion: question.suggestion,
+          pdfUrl: question.pdfUrl,
+          onNext: () => this.next(),
         },
-      ];
+      }];
     } else if (question.type === 'static') {
-      this.fields = [
-        {
-          key: 'static',
-          type: 'static',
-          templateOptions: {
-            heading: question.heading,
-            subheading: question.smallHeading,
-            content: question.content,
-            onNext: () => this.next(),
-          },
+      return [{
+        key: 'static',
+        type: 'static',
+        templateOptions: {
+          heading: question.heading,
+          subheading: question.smallHeading,
+          content: question.content,
+          onNext: () => this.next(),
         },
-      ];
-    } else if (question.options && Array.isArray(question.options)) {
-      this.fields = [
-        {
-          key: 'answer',
-          type: 'radio',
-          templateOptions: {
-            label: question.question,
-            options: question.options.map((option: any) => ({
-              value: option.text,
-              label: option.text,
-              selected: this.answerMap[question.id] === option.text
-            })),
-            required: true,
-          },
+      }];
+    } else if (question.type === 'radio' && question.options) {
+      return [{
+        key: 'answer',
+        type: 'radio',
+        templateOptions: {
+          label: question.text,
+          options: question.options.map((option: any) => ({
+            value: option.text,
+            label: option.text,
+          })),
+          required: true,
         },
-      ];
+      }];
     } else {
       console.error('Unexpected question type or missing options:', question);
+      return [];
     }
   }
+  
 
   next(): void {
-    if (!this.currentQuestion) {
-      console.error('Current question is undefined');
-      return;
-    }
-
-    let answer: string | null = null;
-    if (this.form.value.hasOwnProperty('answer')) {
-      answer = (this.form.value as any).answer;
-    }
-
+    const answer = (this.form.value as FormModel).answer || null;
     if (answer !== null) {
-      this.userResponses.push({ questionId: this.currentQuestion.id, answer: answer });
+      this.userResponses.push({ questionId: this.currentQuestion.id, answer });
       this.answerMap[this.currentQuestion.id] = answer;
     }
 
-    let nextQuestionId: number | null = null;
-
-    if (this.currentQuestion.options && Array.isArray(this.currentQuestion.options)) {
-      const selectedOption = this.currentQuestion.options.find((option: any) => option.text === answer);
-      nextQuestionId = selectedOption ? selectedOption.nextQuestionId : this.currentQuestion.nextQuestionId;
-    } else {
-      nextQuestionId = this.currentQuestion.nextQuestionId;
-    }
-
+    const nextQuestionId = this.getNextQuestionId(answer);
     if (nextQuestionId) {
-      const nextQuestion = this.questions.find(q => q.id === nextQuestionId);
-      if (nextQuestion) {
-        this.previousQuestions.push(this.currentQuestion);
-        this.loadQuestion(nextQuestion);
-
-        if (nextQuestion.options && this.answerMap[nextQuestion.id]) {
-          this.form.patchValue({ answer: this.answerMap[nextQuestion.id] });
-          this.model.answer = this.answerMap[nextQuestion.id];
-        } else {
-          this.form.reset();
-          this.model.answer = '';
-        }
-      } else {
-        console.error('Next question not found for id:', nextQuestionId);
-      }
+      this.loadNextQuestion(nextQuestionId);
     } else {
       console.log('Survey completed:', this.userResponses);
     }
   }
 
+  getNextQuestionId(answer: string | null): number | null {
+    if (this.currentQuestion.options && Array.isArray(this.currentQuestion.options)) {
+      const selectedOption = this.currentQuestion.options.find((option: any) => option.text === answer);
+      return selectedOption ? selectedOption.nextQuestionId : this.currentQuestion.nextQuestionId;
+    }
+    return this.currentQuestion.nextQuestionId;
+  }
+
+  loadNextQuestion(nextQuestionId: number): void {
+    this.questionService.getQuestionById(nextQuestionId).subscribe(nextQuestion => {
+      this.previousQuestions.push(this.currentQuestion);
+      this.loadQuestion(nextQuestion);
+      this.form.reset();
+    }, error => {
+      console.error('Next question not found:', error);
+    });
+  }
+
   goBack(): void {
     if (this.previousQuestions.length > 0) {
       const previousQuestion = this.previousQuestions.pop();
-      if (previousQuestion) {
-        this.currentQuestion = previousQuestion;
-        this.loadQuestion(this.currentQuestion);
-        this.form.patchValue({ answer: this.answerMap[this.currentQuestion.id] });
-        this.model.answer = this.answerMap[this.currentQuestion.id];
-      }
+      this.loadQuestion(previousQuestion);
+      this.form.patchValue({ answer: this.answerMap[previousQuestion.id] || '' });
     }
   }
 
@@ -158,44 +140,48 @@ export class DynamicFormComponent {
     return this.previousQuestions.length > 0;
   }
 
-  isPdfType(): boolean {
-    return this.fields && this.fields.length > 0 && this.fields[0].type === 'pdf';
-  }
-
-  isStaticTextType(): boolean {
-    return this.fields && this.fields.length > 0 && this.fields[0].type === 'static';
-  }
   submit(): void {
-        if (!this.currentQuestion) {
-          console.error('Current question is undefined');
-          return;
-        }
+    if (!this.currentQuestion) {
+        console.error('Current question is undefined');
+        return;
+    }
     
-        const answer = (this.form.value as FormModel).answer;
-        this.userResponses.push({ questionId: this.currentQuestion.id, answer: answer });
-        this.answerMap[this.currentQuestion.id] = answer; // Save selected answer to map
-    
-        const nextQuestionId = this.currentQuestion.options.find((option: any) => option.text === answer)?.nextQuestionId;
-        if (nextQuestionId) {
-          this.previousQuestions.push(this.currentQuestion); // Save current question to stack
-          const nextQuestion = this.questions.find(q => q.id === nextQuestionId);
-          if (nextQuestion) {
-            // Check if next question's answer was previously selected
-            if (this.answerMap[nextQuestion.id]) {
-              this.loadQuestion(nextQuestion);
-              this.form.patchValue({ answer: this.answerMap[nextQuestion.id] }); // Set previously selected answer in form
-              this.model.answer = this.answerMap[nextQuestion.id]; // Set previously selected answer in model
-            } else {
-              this.loadQuestion(nextQuestion);
-              this.form.reset();
-              this.model.answer = ''; // Reset model for the next question
-            }
-          } else {
-            console.error('Next question not found for id:', nextQuestionId);
-          }
-        } else {
-          console.log('Survey completed:', this.userResponses);
-          // You can send the responses to the backend here
-        }
-      }
+    const answer = (this.form.value as FormModel).answer;
+    const questionData = {
+        id: this.currentQuestion.id,
+        text: this.currentQuestion.text,
+        type: this.currentQuestion.type, // This will be "radio", "static", or "pdf"
+        options: this.currentQuestion.options, // This should include options only if type is "radio"
+    };
+
+    // Handle sending the data to your backend service
+    // this.questionService.submitQuestion(questionData).subscribe(response => {
+    //     console.log('Question submitted:', response);
+    //     // Handle the response as needed
+    // }, error => {
+    //     console.error('Error submitting question:', error);
+    // });
+}
+
+
+  isPdfType(): boolean {
+    return this.currentQuestion && this.currentQuestion.pdfUrl !== undefined;
+  }
+  isStaticTextType(): boolean {
+    return this.currentQuestion && this.currentQuestion.type === 'static';
+  }
+  
+}
+  
+
+export interface Option {
+  id: number;
+  text: string;
+  nextQuestionId: number | null;
+  pdfUrl?: string;
+  suggestion?: string;
+  type?: string;
+  heading?: string;
+  smallHeading?: string;
+  content?: string;
 }

@@ -9,7 +9,6 @@ import { FieldType } from '@ngx-formly/core';
     <h3>{{ to.heading }}</h3>
     <p>{{ to.text }}</p>
     <iframe [src]="sanitizedPdfUrl" width="70%" height="600px"></iframe>
-    <button (click)="to.onNext()">Next</button>
   </div>
 `,
 })
