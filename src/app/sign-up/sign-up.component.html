@@ -1,0 +1,29 @@
+<div class="card">
+    <h2>Sign Up</h2>
+    <form (ngSubmit)="onSignup()">
+      <div class="input-container">
+        <label for="signup-email">Email</label>
+        <input type="text" id="signup-email" name="signupEmail" [(ngModel)]="signupEmail" required>
+      </div>
+      <div class="input-container">
+        <label for="username">Username</label>
+        <input type="text" id="username" name="userName" [(ngModel)]="userName" required>
+      </div>
+      <div class="input-container">
+        <label for="signup-password">Password</label>
+        <div class="password-container">
+          <input [type]="signupPasswordFieldType" id="signup-password" name="signupPassword" [(ngModel)]="signupPassword" required>
+          <mat-icon class="eye-icon" (click)="toggleSignupPasswordVisibility()">
+            {{ signupPasswordFieldType === 'password' ? 'visibility' : 'visibility_off' }}
+          </mat-icon>
+        </div>
+      </div>
+      <div class="input-container">
+        <label for="confirm-password">Confirm Password</label>
+        <input type="password" id="confirm-password" name="confirmPassword" [(ngModel)]="confirmPassword" required>
+      </div>
+      <button mat-raised-button color="primary" type="submit">Sign Up</button>
+    </form>
+    <p>Already have an account? <a [routerLink]="['/login']">Log In</a></p>
+  </div>
+  
