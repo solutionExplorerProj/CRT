@@ -11,11 +11,20 @@ import { StrataPropertyComponent } from './strata-property/strata-property.compo
 import { FormlyModule } from '@ngx-formly/core';
 import { FormlyMaterialModule } from '@ngx-formly/material';
 import { SocietiesAndCooperativeAssociationsComponent } from './societies-and-cooperative-associations/societies-and-cooperative-associations.component';
-import { QuestionService } from './vehicle-accidents/question-service';
-import { ReactiveFormsModule } from '@angular/forms';
+
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { PdfTypeComponent } from './vehicle-accidents/pdf-type';
-import { StaticTextComponent } from './vehicle-accidents/static-text';
+import { MatIconModule } from '@angular/material/icon';
+
+import { DynamicFormComponent } from './dynamic-form/dynamic-form.component';
+import { PdfTypeComponent } from './dynamic-form/pdf-type';
+import { StaticTypeComponent } from './dynamic-form/static-text';
+import { QuestionService } from './dynamic-form/question-service';
+import { MatRadioModule } from '@angular/material/radio';
+import { SafeUrlPipe } from './dynamic-form/safe-url-pipe';
+import { LoginComponent } from './login/login.component';
+import { SignUpComponent } from './sign-up/sign-up.component';
+
 
 
 @NgModule({
@@ -25,16 +34,21 @@ import { StaticTextComponent } from './vehicle-accidents/static-text';
     VehicleAccidentsComponent,
     SmallClaimsComponent,
     StrataPropertyComponent,
-    SocietiesAndCooperativeAssociationsComponent
+    SocietiesAndCooperativeAssociationsComponent,
+    DynamicFormComponent,
+    SafeUrlPipe,
+    LoginComponent,
+    SignUpComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    FormsModule, 
     FormlyModule.forRoot(
       {
         types: [
           { name: 'pdf', component: PdfTypeComponent },
-          { name: 'static-text', component: StaticTextComponent },
+          { name: 'static', component: StaticTypeComponent },
         ],
         
       }
@@ -42,7 +56,8 @@ import { StaticTextComponent } from './vehicle-accidents/static-text';
     FormlyMaterialModule,  
     ReactiveFormsModule,
     BrowserAnimationsModule,
-   
+    MatRadioModule,
+    MatIconModule,
     HttpClientModule
   ],
   providers: [QuestionService],
