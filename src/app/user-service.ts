@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map, Observable } from 'rxjs';
 import { Question } from './question-module';
 import { User } from './User';
+import { UserResponseDTO } from './UserResponseDTO';
 
 
 @Injectable({
@@ -14,8 +15,7 @@ export class UserService {
   private loginUrl = 'http://localhost:8990/api/crt/user/login';
   private registerUrl='http://localhost:8990/api/crt/user/register'
   private userResUrl='http://localhost:8990/api/crt/response/save';
-  private authToken: string | null = null;
-
+ private baseUrl='http://localhost:8990/api/crt/response'
   constructor(private http: HttpClient) {}
 
   getQuestionById(id: number): Observable<Question> {
@@ -58,5 +58,10 @@ export class UserService {
   
   register(user: User): Observable<User> {
     return this.http.post<User>(this.registerUrl, user);
+  }
+
+   // Method to save multiple user responses
+   saveUserResponses(responses: UserResponseDTO[]): Observable<any> {
+    return this.http.post<any>(`${this.baseUrl}/saveList`, responses);
   }
 }
