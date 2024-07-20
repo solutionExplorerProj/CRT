@@ -24,6 +24,9 @@ import { MatRadioModule } from '@angular/material/radio';
 import { SafeUrlPipe } from './dynamic-form/safe-url-pipe';
 import { LoginComponent } from './login/login.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
+import { HomeComponent } from './home/home.component';
+import { MenuComponent } from './menu/menu.component';
+
 
 
 
@@ -38,7 +41,9 @@ import { SignUpComponent } from './sign-up/sign-up.component';
     DynamicFormComponent,
     SafeUrlPipe,
     LoginComponent,
-    SignUpComponent
+    SignUpComponent,
+    HomeComponent,
+    MenuComponent
   ],
   imports: [
     BrowserModule,
@@ -48,7 +53,7 @@ import { SignUpComponent } from './sign-up/sign-up.component';
       {
         types: [
           { name: 'pdf', component: PdfTypeComponent },
-          { name: 'static', component: StaticTypeComponent },
+          { name: 'static', component: StaticTypeComponent }
         ],
         
       }

@@ -1,4 +1,36 @@
-   <!-- <button mat-raised-button color="primary" *ngIf="showButtons" (click)="loadJson('questions.json')">Load Questions 1</button>
-   <button mat-raised-button color="primary" *ngIf="showButtons" (click)="loadJson('questions2.json')">Load Questions 2</button>
+<app-menu></app-menu>
 
-<app-dynamic-form [jsonFilename]="selectedJson"></app-dynamic-form> -->
+<button class="button" mat-raised-button *ngIf="showButtons" (click)="loadJson()">
+   <mat-icon>label_important</mat-icon>
+   <span class="button-text">Vehicle accidents on or after May 1, 2021</span>
+ </button><br>
+ <button class="button" mat-raised-button *ngIf="showButtons">
+   <mat-icon>label_important</mat-icon>
+   <span class="button-text">Vehicle accidents before May 1, 2021</span>
+ </button>
+ <div class="terms" *ngIf="showTerms">
+   <div class="header">
+     <h1 id="heading">Please read and agree to the terms to proceed</h1><br>
+   </div>
+   <div class="middle_content">
+     <h2>Solution Explorer Terms of Use</h2><br>
+     <h2>Let's get started!</h2><br>
+     <p>The Solution Explorer asks simple questions about your dispute. It's free, anonymous, and confidential.</p><br>
+     <p>The Solution Explorer doesn't provide legal advice. But it gives you legal information based on your <br>answers. It even has template letters that you can send someone to try and resolve a dispute on your <br> own.</p><br>
+     <p>It also classifies your dispute and gives you the right CRT online application form for your situation.</p><br>
+     <h2>How to make a CRT claim</h2><br>
+     <p>To apply, choose "Make a claim with the CRT" when asked what you'd like to do about your issue, and <br> follow the prompts. There's no obligation to make a CRT claim. You can use the Solution Explorer any <br> time for free legal information and tools.</p><br><br>
+     <h2>Disclaimers and terms of use</h2><br>
+     <p>The content in this site is not legal advice. The Civil Resolution Tribunal (CRT) can't provide legal <br> advice. If you have questions about whether you should make a claim with the CRT, you may want to  <br>contact a lawyer or other legal services provider.</p><br>
+     <p>This Solution Explorer content is subject to change and is updated regularly.</p><br>
+     <p>The Solution Explorer application is provided as a public service by the Government of British Columbia, <br> Box 9411, Victoria, British Columbia,  Canada V8W 9V1. Read our full Terms of Use.</p><br>
+   </div>
+   <div class="bottom-content">
+     <input type="checkbox" id="terms-checkbox">
+     <label for="terms-checkbox">I agree to the Solution Explorer Terms of Use</label><br><br>
+     <div *ngIf="formSubmitted && !acceptedTerms" class="error-message">
+       You must agree to the terms to continue.
+     </div><br>
+     <button mat-raised-button class="Accept-button" (click)="navigateToVehicleAccidents()"><span>Accept and continue</span></button>
+   </div>
+ </div>

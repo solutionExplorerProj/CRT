@@ -1,5 +1,5 @@
-/* Importing the Roboto font from Google Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+/* Importing the Poppins font from Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
 /* Importing PrimeNG and Angular Material CSS */
 @import "primeng/resources/themes/lara-light-blue/theme.css";
@@ -10,15 +10,11 @@ html, body {
     height: 100%;
     width: 100%;
     margin: 0;
-    background: #A5E1FF;
-    font-family: 'Roboto', sans-serif; /* Applying the Roboto font */
+    background: linear-gradient(135deg, #A5E1FF, #4C91E8, #1D4B73) no-repeat fixed;
+    background-size: cover;
+    font-family: 'Poppins', sans-serif; /* Apply Poppins font to the entire document */
 }
 
 :root {
     --custom-blue: #0082FC;
-}
-
-/* Angular Material typography override */
-.mat-typography {
-    font-family: 'Roboto', sans-serif;
 }

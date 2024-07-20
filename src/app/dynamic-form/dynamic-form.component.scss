@@ -1,0 +1,90 @@
+/* Centering the content on the page */
+body, html {
+  height: 100%;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f0f0f0; /* Light grey background */
+}
+
+app-menu {
+  margin-bottom: 20px;
+}
+
+form {
+  margin-left: 5%;
+  background-color: #ffffff; /* White background for the form */
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for better focus */
+  width: 90%;
+  border: 2px solid black;
+}
+
+.buttons {
+  display: flex;
+  margin-top: 20px;
+  margin-left: 5%;
+}
+
+button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-bottom: 3%;
+}
+
+.submit-class {
+  background-color: var(--custom-blue); /* Custom blue background */
+  color: white; /* White text */
+}
+
+/* Back button specific styles */
+.back-class {
+  color: var(--custom-blue); /* Custom blue color */
+  border: 2px solid var(--custom-blue);
+  background-color: #ffffff; /* White background */
+  margin-right: 1%;
+}
+
+button:hover {
+  opacity: 0.8; /* Slightly darken buttons on hover */
+}
+
+button:disabled {
+   /* Grey background for disabled state */
+  cursor: not-allowed;
+}
+
+#submit {
+  position: relative;
+  left: 10%;
+}
+
+/* Media queries for responsive design */
+@media (max-width: 768px) {
+  form {
+    padding: 15px;
+    width: 100%;
+    margin-left: 0;
+    box-shadow: none; /* Remove shadow for smaller screens */
+  }
+
+  .buttons {
+    flex-direction: column;
+    align-items: center;
+    margin-left: 0;
+  }
+
+  button {
+    width: 100%;
+    margin: 5px 0;
+  }
+
+  #submit {
+    left: 0;
+  }
+}

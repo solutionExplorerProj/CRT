@@ -1,13 +1,13 @@
+<app-menu></app-menu>
 <div *ngIf="currentQuestion">
-  <h2>{{ currentQuestion.text }}</h2>
 
   <form [formGroup]="form">
     <formly-form [model]="model" [fields]="fields" [form]="form"></formly-form>
   </form>
 
   <div class="buttons">
-    <button type="button" (click)="goBack()" [disabled]="!canGoBack()">Back</button>
-    <button type="button" (click)="next()">Next</button>
-    <button type="button" (click)="submitAll()">Submit</button>
+    <button type="button" (click)="goBack()" [disabled]="!canGoBack()" class="back-class">Back</button>
+    <button type="button" (click)="next()" class="submit-class">Next</button>
+    <button type="button" (click)="submitAll()" class="submit-class" id="submit">Submit</button>
   </div>
 </div>

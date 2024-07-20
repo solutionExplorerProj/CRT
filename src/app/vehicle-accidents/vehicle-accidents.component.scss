@@ -1,0 +1,152 @@
+.button {
+    padding: 1%;
+    border: none;
+    outline: none;
+    background-color: #ffffff;
+    margin-bottom: 3%;
+    margin-left: 3%;
+    border-radius: 50px;
+    border: 2px solid var(--custom-blue);
+    cursor: pointer;
+    width: 40%;
+    font-size: large;
+    text-align: left;
+}
+
+
+
+span {
+    position: relative;
+    left: 3%;
+}
+
+button:hover .button-text {
+    color: var(--custom-blue); 
+}
+
+button .button-text {
+    transition: color 0.3s ease; 
+}
+
+/* Terms section styles */
+.terms {
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    padding: 3%;
+    height: auto; /* Adjust height */
+    background: #ffffff;
+    margin-left: 5%;
+    position: relative;
+    bottom: 5%;
+    width: 85%;
+    border-radius: 50px;
+}
+
+/* Hide default checkbox */
+input[type="checkbox"] {
+    position: absolute;
+    opacity: 0;
+}
+
+/* Style the custom checkbox */
+input[type="checkbox"] + label {
+    position: relative;
+    padding-left: 25px; /* Adjust as needed */
+    cursor: pointer;
+    display: inline-block;
+    color: #333; /* Label text color */
+}
+
+/* Create the tick mark */
+input[type="checkbox"] + label:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 2px;
+    width: 18px;
+    height: 18px;
+    border: 1px solid var(--custom-blue); /* Blue border color */
+    background-color: #fff; /* White background */
+}
+
+/* Style the tick mark when checked */
+input[type="checkbox"]:checked + label:before {
+    content: '\2713'; /* Unicode check mark character */
+    font-size: 40px; /* Adjust size */
+    line-height: 18px; /* Center vertically */
+    text-align: center;
+    color: var(--custom-blue); /* Blue color */
+    background-color: #fff; /* White background */
+    border-color: var(--custom-blue); /* Blue border color */
+}
+
+.error-message {
+    color: red;
+    margin-top: 5px; /* Adjust spacing as needed */
+}
+
+.Accept-button {
+    padding: 1%;
+    width: 15%;
+    outline: 0;
+    border: 0;
+    border-radius: 15px;
+    color: #ffffff;
+    background-color: var(--custom-blue);
+    font-size: medium;
+    cursor: pointer;
+}
+
+#heading {
+    font-weight: 600;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    .button {
+        margin-left: 3%;
+        width: 90%; /* Adjust width for mobile */
+        font-size: medium; /* Smaller font size */
+    }
+    
+    .terms {
+        margin-left: 3%; /* Remove left margin on mobile */
+        width: 95%; /* Adjust width for mobile */
+        padding: 3%; /* Reduce padding */
+    }
+    
+    .Accept-button {
+        width: 28%; /* Full width on mobile */
+        font-size: medium; /* Adjust font size */
+    }
+    
+
+    
+    span {
+        left: 1%; /* Adjust text position for mobile */
+    }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+    .button {
+        margin-left: 3%;
+        width: 70%; /* Adjust width for tablets */
+        font-size: large; /* Adjust font size */
+    }
+    
+    .terms {
+        margin-left: 3%; /* Adjust margin */
+        width: 90%; /* Adjust width for tablets */
+        padding: 3%; /* Adjust padding */
+    }
+    
+    .Accept-button {
+        width: 20%; /* Adjust width for tablets */
+        font-size: large; /* Adjust font size */
+    }
+    
+   
+    
+    span {
+        left: 2%; /* Adjust text position for tablets */
+    }
+}

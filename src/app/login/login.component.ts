@@ -26,7 +26,7 @@ export class LoginComponent {
         if (token) {
           // Navigate to the dashboard upon successful login
           console.log("this is success")
-          this.router.navigate(['/dynamic']);
+          this.router.navigate(['/home']);
         } else {
           // Handle the case where no token is returned
           this.errorMessage = 'Login failed: No token received';

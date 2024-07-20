@@ -11,11 +11,11 @@ import { UserResponseDTO } from './UserResponseDTO';
 })
 export class UserService {
  
-  private apiUrl = 'http://localhost:8990/api/crt/questions';
-  private loginUrl = 'http://localhost:8990/api/crt/user/login';
-  private registerUrl='http://localhost:8990/api/crt/user/register'
-  private userResUrl='http://localhost:8990/api/crt/response/save';
- private baseUrl='http://localhost:8990/api/crt/response'
+  private apiUrl = 'http://Serviceapp-env.eba-9ssz2pm2.eu-north-1.elasticbeanstalk.com/api/crt/questions';
+  private loginUrl = 'http://Serviceapp-env.eba-9ssz2pm2.eu-north-1.elasticbeanstalk.com/api/crt/user/login';
+  private registerUrl='http://Serviceapp-env.eba-9ssz2pm2.eu-north-1.elasticbeanstalk.com/api/crt/user/register'
+  private userResUrl='http://Serviceapp-env.eba-9ssz2pm2.eu-north-1.elasticbeanstalk.com/api/crt/response/save';
+ private baseUrl='http://Serviceapp-env.eba-9ssz2pm2.eu-north-1.elasticbeanstalk.com/api/crt/response'
   constructor(private http: HttpClient) {}
 
   getQuestionById(id: number): Observable<Question> {
